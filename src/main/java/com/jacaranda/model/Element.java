@@ -123,6 +123,14 @@ public class Element {
 		return id == other.id;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Element [id=" + id + ", name=" + name + ", description=" + description + ", stock=" + stock + ", price="
+				+ price + ", cat=" + cat + "]";
+	}
+
+	
 	
 	
 }

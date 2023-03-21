@@ -11,6 +11,6 @@
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
   <mapping class="com.jacaranda.model.Category"/>
-  <mapping class="com.jacaranda.model.Element"/>
+  <mapping class="com.jacaranda.model.Element"/> 
  </session-factory>
 </hibernate-configuration>

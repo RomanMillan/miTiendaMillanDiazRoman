@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@page import="com.jacaranda.controller.*"%>
- <%@page import="com.jacaranda.model.*"%>
+     <%@page import="com.jacaranda.controller.CategoryControl"%>
+ <%@page import="com.jacaranda.model.Category"%>
  <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -24,14 +24,15 @@
 			for(Category i: category){
 		%>
 			<tr>
-					<td><%=i.getName()%></td>
-					<td><%=i.getDescription()%></td>
-					<td><%=i.getElement()%></td>
-					</form>
-				</tr>
-			<%
+				<td><%=i.getName()%></td>
+				<td><%=i.getDescription()%></td>	
+				<td>
+				 	<a href='elements.jsp?key=<%=i.getId()%>'>Modelos</a>	
+				</td>
+			</tr>
+		<%
 			}
-			%>
+		%>
 		</table>		
 		
 	</body>
