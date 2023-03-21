@@ -1,6 +1,6 @@
 CREATE USER 'millan'@'%' IDENTIFIED by 'roman';
 CREATE DATABASE IF NOT EXISTS `miTiendaMillanDiazRoman`;
-GRANT ALL PRIVILEGES ON `millan`.* TO 'millan'@'%';
+GRANT ALL PRIVILEGES ON `miTiendaMillanDiazRoman`.* TO 'millan'@'%';
 
 
 CREATE TABLE miTiendaMillanDiazRoman.userDB( 
@@ -35,10 +35,10 @@ CREATE TABLE miTiendaMillanDiazRoman.elementDB(
 CREATE TABLE miTiendaMillanDiazRoman.purchase(
 	amount int(4),
 	price int(12),
-	puerchase_date datetime,
+	purchase_date datetime,
 	id_element int(4),
 	id_user VARCHAR(32),
-	CONSTRAINT PK_purchase PRIMARY KEY (id_element, id_user, puerchase_date),
+	CONSTRAINT PK_purchase PRIMARY KEY (id_element, id_user, purchase_date),
 	CONSTRAINT FK_purchase_element FOREIGN KEY(id_element) REFERENCES elementDB(id),
 	CONSTRAINT FK_purchase_user FOREIGN KEY(id_user) REFERENCES userDB(user)
 );
