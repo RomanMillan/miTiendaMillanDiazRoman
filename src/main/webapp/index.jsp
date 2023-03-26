@@ -28,7 +28,7 @@
 			<div class="row">
 				<div class="col">
 					<h3>Início</h3>
-					<form action="Login" method="post">		  
+					<form action="categories.jsp" method="post">		  
 					  <div class="form-row">					    
 					      <label for="validationServer01">Nombre</label>
 					      <input type="text" name="username" class="form-control" id="validationCustom01" placeholder="Nombre de usuario" required>

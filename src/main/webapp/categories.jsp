@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@page import="com.jacaranda.controller.CategoryControl"%>
+ <%@page import="com.jacaranda.controller.*"%>
  <%@page import="com.jacaranda.model.Category"%>
  <%@page import="com.jacaranda.model.User"%>
  <%@page import="java.util.List"%>
@@ -15,8 +15,27 @@
 	<body>
 	<!-- HEADER -->
 		<%  
+		HttpSession sesion = request.getSession();
 			
-		
+		if(sesion.getAttribute("login") == null) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+
+			User user = UserControl.getUser(username, password);
+			
+			if(user != null) {
+				sesion.setAttribute("login",true);
+				sesion.setAttribute("user",username);
+				sesion.setAttribute("administrator", false);
+				
+				if(user.isAdministrator()) {
+					sesion.setAttribute("administrator", true);
+				}	
+			}else {
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
+			}
+		}
+
 		%>
 		<nav class="navbar navbar-light bg-light">
 	  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
@@ -33,6 +52,11 @@
 				<h1 class="display-1">Todas Nuestras Marcas</h1>
 				<h3 class="display-3">Marcas con personalidad</h3>
 			</div>
+			
+			<div class="row">
+				<a href="allElements.jsp" class="btn btn-primary">Todos los modelos</a>
+			</div>
+			
 			<div class="row">
 			<%
 				List<Category> category = CategoryControl.getCategory();

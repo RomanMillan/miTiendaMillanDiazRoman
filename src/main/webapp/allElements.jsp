@@ -1,34 +1,25 @@
+<%@page import="com.jacaranda.controller.ElementControl"%>
+<%@page import="com.jacaranda.model.Element"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@ page import="com.jacaranda.controller.*" %>
-   <%@ page import="com.jacaranda.model.*" %>
-   <%@ page import="java.util.List" %>
+       <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-				<link rel="stylesheet" href="css/style.css">
-		<title>modelos coches</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css">
+		<title>Todos los modelos</title>
 	</head>
 	<body>
-	<!-- HEADER -->
+		<!-- HEADER -->
 			<%
 				/* compruebo que está logeado */
 				boolean isValid = (boolean) session.getAttribute("login");
 				if(!isValid){
 					request.getRequestDispatcher("/error.jsp").forward(request, response);
 				}
-				
-				/* cojo el objeto category*/
-				int id = Integer.parseInt(request.getParameter("key"));
-				Category category = CategoryControl.getCategory(id);
-				
-				/* compruebo que es un objeto valido */
-				if(category == null){
-					request.getRequestDispatcher("/categories.jsp").forward(request, response);
-				}
-				
+
 				/* miro si es admin  */
 				boolean admin = (boolean) session.getAttribute("administrator");
 				
@@ -40,13 +31,12 @@
 		</nav>
 	<!-- END HEADER -->
 	
-	<!-- MAIN -->
+		<!-- MAIN -->
 			
 			<div class="container">
 				<!-- second header -->
 				<div class="row">
-					<% String categoryName = category.getName(); %>
-					<h1 class="display-1">Modelos <%=categoryName %></h1>
+					<h1 class="display-1"> Todos Los Modelos</h1>
 					<form action="categories.jsp" method="get">
 						<button class="btn btn-secondary">Atras</button>
 					</form>
@@ -66,13 +56,13 @@
 							</tr>
 						</thead>
 					<%	
-						List<Element> elementList = category.getElement();
+						List<Element> elementList = ElementControl.getAllElements();
 						
 						for(Element e : elementList){
 					%>
 					
 					<tr>
-							<td><%=categoryName%></td>
+							<td><%=e.getCat().getName()%></td>
 							<td><%=e.getName()%></td>
 							<td><%=e.getDescription()%></td>
 							<td><%=e.getPrice()%></td>
@@ -103,7 +93,7 @@
 			  	</div>
 			</footer>
 	    <!-- END FOOTER -->
-			
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	
 	</body>
 </html>

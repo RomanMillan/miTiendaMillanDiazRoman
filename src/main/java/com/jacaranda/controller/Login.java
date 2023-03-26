@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 			User user = UserControl.getUser(username, password);
 			
 			if(user != null) {
-				sesion.setAttribute("login","true");
+				sesion.setAttribute("login",true);
 				sesion.setAttribute("user",username);
 				sesion.setAttribute("administrator", false);
 				if(user.isAdministrator()) {
