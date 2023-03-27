@@ -2,6 +2,9 @@ package com.jacaranda.model;
 
 import java.util.Objects;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Purchase {
 	
 	private int amount;
@@ -9,16 +12,27 @@ public class Purchase {
 	private String purchase_date;
 	private int id_element;
 	private String id_user;
+	@ManyToOne
+	@JoinColumn(name="id_user")
+	private User userObj;
+	@ManyToOne
+	@JoinColumn(name="id_element")
+	private Element elementObj;
 	
 //	constructores
-	public Purchase(int amount, int price, String purchase_date, int id_element, String id_user) {
+	
+	public Purchase(int amount, int price, String purchase_date, int id_element, String id_user, User userObj,
+			Element elementObj) {
 		super();
 		this.amount = amount;
 		this.price = price;
 		this.purchase_date = purchase_date;
 		this.id_element = id_element;
 		this.id_user = id_user;
+		this.userObj = userObj;
+		this.elementObj = elementObj;
 	}
+	
 	public Purchase() {
 		super();
 		this.amount = 0;
@@ -26,8 +40,10 @@ public class Purchase {
 		this.purchase_date = null;
 		this.id_element = 0;
 		this.id_user = null;
+		this.elementObj = null;
 	}
 	
+
 //	getter and setter
 	public int getAmount() {
 		return amount;
@@ -60,7 +76,25 @@ public class Purchase {
 		this.id_user = id_user;
 	}
 	
-//	hashcode and equals
+	
+	
+public User getUserObj() {
+		return userObj;
+	}
+
+	public void setUserObj(User userObj) {
+		this.userObj = userObj;
+	}
+
+	public Element getElementObj() {
+		return elementObj;
+	}
+
+	public void setElementObj(Element elementObj) {
+		this.elementObj = elementObj;
+	}
+
+	//	hashcode and equals
 	@Override
 	public int hashCode() {
 		return Objects.hash(id_element, id_user, purchase_date);

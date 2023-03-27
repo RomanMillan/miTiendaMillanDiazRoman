@@ -1,9 +1,11 @@
 package com.jacaranda.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name="userDB")
 public class User {
@@ -15,10 +17,13 @@ public class User {
 	private boolean gender;
 	private String birthday;
 	private boolean administrator;
+	@OneToMany(mappedBy="userObj")
+	private List<Purchase> purchase;
 	
 //	constructores
+	
 	public User(String user, String password, String name, String surname, boolean gender, String birthday,
-			boolean administrator) {
+			boolean administrator, List<Purchase> purchase) {
 		super();
 		this.user = user;
 		this.password = password;
@@ -27,7 +32,9 @@ public class User {
 		this.gender = gender;
 		this.birthday = birthday;
 		this.administrator = administrator;
+		this.purchase = purchase;
 	}
+	
 	public User() {
 		super();
 		this.user = null;
@@ -37,8 +44,10 @@ public class User {
 		this.gender = false;
 		this.birthday = null;
 		this.administrator = false;
+		this.purchase = null;
 	}
 	
+
 //	getter and setter
 	public String getUser() {
 		return user;
@@ -83,7 +92,15 @@ public class User {
 		this.administrator = administrator;
 	}
 	
-//	hashCode and Equals
+	public List<Purchase> getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(List<Purchase> purchase) {
+		this.purchase = purchase;
+	}
+
+	//	hashCode and Equals
 	@Override
 	public int hashCode() {
 		return Objects.hash(user);

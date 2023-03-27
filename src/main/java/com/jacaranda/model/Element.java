@@ -1,5 +1,6 @@
 package com.jacaranda.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity(name="elementDB")
@@ -22,9 +24,12 @@ public class Element {
 	@ManyToOne
 	@JoinColumn(name="id_category")
 	private Category cat;
+	@OneToMany(mappedBy="userObj")
+	private List<Purchase> elementObj;
 	
 //	Constructores
-	public Element(int id, String name, String description, int stock, int price, Category cat) {
+	
+	public Element(int id, String name, String description, int stock, int price, Category cat, List<Purchase> elementObj) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -32,8 +37,8 @@ public class Element {
 		this.stock = stock;
 		this.price = price;
 		this.cat = cat;
+		this.elementObj = elementObj;
 	}
-
 
 	public Element() {
 		super();
@@ -43,7 +48,9 @@ public class Element {
 		this.stock = 0;
 		this.price = 0;
 		this.cat = null;
+		this.elementObj = null;
 	}
+
 
 // getter and setter
 	public int getId() {
@@ -105,6 +112,15 @@ public class Element {
 		this.cat = cat;
 	}
 
+	public List<Purchase> getElementObj() {
+		return elementObj;
+	}
+
+	public void setElementObj(List<Purchase> elementObj) {
+		this.elementObj = elementObj;
+	}
+
+	
 //hashCode and equals
 	@Override
 	public int hashCode() {
@@ -129,6 +145,7 @@ public class Element {
 		return "Element [id=" + id + ", name=" + name + ", description=" + description + ", stock=" + stock + ", price="
 				+ price + ", cat=" + cat + "]";
 	}
+
 
 	
 	

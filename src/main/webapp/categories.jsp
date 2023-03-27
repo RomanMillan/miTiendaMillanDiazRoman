@@ -17,23 +17,8 @@
 		<%  
 		HttpSession sesion = request.getSession();
 			
-		if(sesion.getAttribute("login") == null) {
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-
-			User user = UserControl.getUser(username, password);
-			
-			if(user != null) {
-				sesion.setAttribute("login",true);
-				sesion.setAttribute("user",username);
-				sesion.setAttribute("administrator", false);
-				
-				if(user.isAdministrator()) {
-					sesion.setAttribute("administrator", true);
-				}	
-			}else {
+		if(sesion.getAttribute("login") == null) {			
 				request.getRequestDispatcher("/error.jsp").forward(request, response);
-			}
 		}
 
 		%>
@@ -54,7 +39,7 @@
 			</div>
 			
 			<div class="row">
-				<a href="allElements.jsp" class="btn btn-primary">Todos los modelos</a>
+				<a href="allElements.jsp" class="btn btn-primary">Ver todos los modelos</a>
 			</div>
 			
 			<div class="row">

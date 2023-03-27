@@ -13,6 +13,10 @@ public class ElementControl {
 		return (Element) ConnectionDAO.getSession().get(Element.class,id);
 	}
 	
+//	public static Element getElement(String nombre) {
+//		return (Element) ConnectionDAO.getSession().get(Element.class,id);
+//	}
+//	
 	public static List<Element> getAllElements() {
 			Query<Element> query = ConnectionDAO.getSession().createQuery("SELECT c FROM com.jacaranda.model.Element c");
 			List<Element> elementList = (List <Element>) query.getResultList();
