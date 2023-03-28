@@ -23,5 +23,20 @@ public class ElementControl {
 			return elementList;
 	}
 	
+	public static boolean addElement(Element e) {
+		boolean added = false;
+		Query<Element> query = ConnectionDAO.getSession().createQuery("SELECT c FROM com.jacaranda.model.Element c WHERE c.name = ' " + e.getName()+"'");
+		
+		try {
+			ConnectionDAO.getSession().getTransaction().begin();
+			ConnectionDAO.getSession().save(e);
+			ConnectionDAO.getSession().getTransaction().commit();
+			added = true;
+		} catch (Exception e2) {
+			
+		}
+		
+		return added;
+	}
 	
 }

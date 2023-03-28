@@ -14,9 +14,13 @@ public class Purchase {
 	private int price;
 	@Id
 	private String purchase_date;
+	
+	@Id
 	@ManyToOne
 	@JoinColumn(name="id_user")
 	private User userObj;
+	
+	@Id
 	@ManyToOne
 	@JoinColumn(name="id_element")
 	private Element elementObj;
