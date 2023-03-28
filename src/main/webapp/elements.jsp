@@ -15,13 +15,17 @@
 	<!-- HEADER -->
 			<%
 				/* compruebo que está logeado */
-				boolean isValid = (boolean) session.getAttribute("login");
-				if(!isValid){
-					request.getRequestDispatcher("/error.jsp").forward(request, response);
-				}
 				
+				if(session.getAttribute("login") == null || request.getParameter("key") == null || request.getParameter("key").isBlank() ){
+					response.sendRedirect("error.jsp");
+				}else{
+					
+				
+				Boolean valid = (Boolean) session.getAttribute("login");
 				/* cojo el objeto category*/
+							
 				int id = Integer.parseInt(request.getParameter("key"));
+				
 				Category category = CategoryControl.getCategory(id);
 				
 				/* compruebo que es un objeto valido */
@@ -90,6 +94,7 @@
 					</tr>
 					<%
 						}
+				}
 					%>
 					</table>		
 				</div>
