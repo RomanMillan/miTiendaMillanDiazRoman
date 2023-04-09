@@ -16,18 +16,21 @@
 		
 		<!-- HEADER -->
 			<%
-				if(session.getAttribute("login") == null || 
-						request.getParameter("key") == null || request.getParameter("key").isBlank() || 
-						!(boolean) session.getAttribute("administrator")){
-					response.sendRedirect("error.jsp");
-				}else{
-								
-					int id = Integer.parseInt(request.getParameter("key"));
-					
-					Category c = CategoryControl.getCategory(id);
-					
-					if(c == null){
-						request.getRequestDispatcher("/categories.jsp").forward(request, response);
+			if(session.getAttribute("login") == null || 
+					request.getParameter("keyElement") == null || request.getParameter("keyElement").isBlank() || 
+					request.getParameter("keyCategory") == null || request.getParameter("keyCategory").isBlank() || 
+					!(boolean) session.getAttribute("administrator")){
+				response.sendRedirect("error.jsp");
+			}else{
+				
+				int idElement = Integer.parseInt(request.getParameter("keyElement"));
+				Element e = ElementControl.getElement(idElement);
+				
+				int idCategory = Integer.parseInt(request.getParameter("keyCategory"));
+				Category c = CategoryControl.getCategory(idCategory);
+				
+				if(c == null){
+					request.getRequestDispatcher("/categories.jsp").forward(request, response);
 				}
 					
 				%>
@@ -42,7 +45,6 @@
 						
 					<div class="container">
 						<!-- second header -->
-						
 						<br>
 						<div class="row">
 							<div class="row">
@@ -51,7 +53,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<h1 class="display-1">Añadir nuevo modelo para <%=c.getName()%></h1>
+								<h1 class="display-1"><%=c.getName()%> , <%=e.getName()%></h1>
 							</div>
 						</div>
 					
@@ -59,7 +61,7 @@
 						
 						<!-- form -->
 						<div class="row">
-							<form action="addElementData.jsp" method="post">	
+							<form action="updateElementData.jsp" method="post">	
 								<div class="form-group">
 									<label>Nombre</label>
 									<input class="form-control" type="text" name="name" required>
@@ -77,17 +79,19 @@
 									<input class="form-control" type="number" name="price" required>
 								</div>
 								
+								
 								<input type="text" name="idCategory" hidden="true" value="<%=c.getId()%>">
+								<input type="text" name="idElement" hidden="true" value="<%=e.getId()%>">
 								<br>
-								<button class="btn btn-primary" type="submit">Añadir</button>
+								<button class="btn btn-primary" type="submit">Actualizar</button>
 							</form>
 						</div>
-						
-						
+					
+					
 					</div>
 		
 		<%}%>
-		<!-- END MAIN -->
+	<!-- END MAIN -->
 	
 		<!-- FOOTER -->
 	     <footer class="bg-light text-center text-lg-start">

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="com.jacaranda.model.User" %>
-    <%@page import="com.jacaranda.controller.UserControl" %>
+<%@page import="com.jacaranda.model.User" %>
+<%@page import="com.jacaranda.controller.UserControl" %>
+<%@ page import="org.apache.commons.codec.digest.DigestUtils" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 		HttpSession sesion = request.getSession();
 		
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String password = DigestUtils.md2Hex(request.getParameter("password"));
 	
 		if(username == null || password == null){
 			request.getRequestDispatcher("/error.jsp").forward(request, response);

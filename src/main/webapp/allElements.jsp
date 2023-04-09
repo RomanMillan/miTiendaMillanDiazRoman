@@ -37,9 +37,11 @@
 				<!-- second header -->
 				<div class="row">
 					<h1 class="display-1"> Todos Los Modelos</h1>
-					<form action="categories.jsp" method="get">
-						<button class="btn btn-secondary">Atras</button>
-					</form>
+					<div class="col-md-3">
+						<form action="categories.jsp" method="get">
+							<button class="btn btn-secondary">Atrás</button>
+						</form>
+					</div>
 				</div>
 				
 				<br>

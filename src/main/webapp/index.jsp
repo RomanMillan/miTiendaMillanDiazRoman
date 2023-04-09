@@ -26,7 +26,9 @@
 			
 			<!-- Do loging -->
 			<div class="row">
-				<div class="col">
+				
+				<div class="col" id="holi"> <!-- No me identifica el id Arreglar -->
+					<br>
 					<h3>Início</h3>
 					<form action="validUser.jsp" method="post">		  
 					  <div class="form-row">					    
@@ -40,9 +42,10 @@
 					  <button class="btn btn-primary" type="submit">Entrar</button>
 					</form>
 				</div>
+				
 				<div class="col">
 					<h3>Registrase</h3>
-					<form action="Login" method="post">
+					<form action="addUser.jsp" method="post">
 					  <div class="form-row">				    
 					      <label for="validationServer01">Nombre</label>
 					      <input type="text" name="username" class="form-control" id="validationCustom01" placeholder="Manolo" required>				    			    
@@ -51,16 +54,20 @@
 					      <input type="password" name="password" class="form-control" id="validationCustom01" placeholder="*******" required>
 						  
 						  <label for="validationServer02">Nombre real</label>
-					      <input type="text" name="password" class="form-control" id="validationCustom01" placeholder="Manuel" required>
+					      <input type="text" name="realName" class="form-control" id="validationCustom01" placeholder="Manuel" required>
 						  
 						  <label for="validationServer02">Apellidos</label>
-					      <input type="text" name="password" class="form-control" id="validationCustom01" placeholder="Sanchez Julián" required>
+					      <input type="text" name="surname" class="form-control" id="validationCustom01" placeholder="Sanchez Julián" required>
 	
-						  <label for="validationServer02">Sexo</label>
-					      <input type="password" name="password" class="form-control" id="validationCustom01" placeholder="*******" required>
-	
+						 <label for="validationServer02">Sexo</label>
+						 <br>
+					     <select class="form-select" name="gender">
+							<option>Femenino</option>
+							<option>Masculino</option>
+						</select>
+							<br>
 						  <label for="validationServer02">Fecha nacimiento</label>
-					      <input type="date" name="password" class="form-control" id="validationCustom01" required>
+					      <input type="date" name=birthday class="form-control" id="validationCustom01" required>
 	
 	
 					  </div>

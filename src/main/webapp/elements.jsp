@@ -7,14 +7,14 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 				<link rel="stylesheet" href="css/style.css">
+				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 		<title>modelos coches</title>
 	</head>
 	<body>
 	<!-- HEADER -->
 			<%
-				/* compruebo que está logeado  y que pasa objetos nulos o vacios*/
+				/* compruebo que está logeado  y que no pasa valores nulos o vacios*/
 				
 				if(session.getAttribute("login") == null || request.getParameter("key") == null || request.getParameter("key").isBlank() ){
 					response.sendRedirect("error.jsp");
@@ -26,15 +26,16 @@
 					
 					Category category = CategoryControl.getCategory(id);
 					
-					/* compruebo que es un objeto valido */  // TENGO QUE PONER EL ELSE
+					//TODO: TENGO QUE PONER EL ELSE (DISPACHER / SENDREDIRECT )
+					/* compruebo que es un objeto valido */ 
 					if(category == null){
 						request.getRequestDispatcher("/categories.jsp").forward(request, response);
 					}
 					
 					/* miro si es admin  */
 					boolean admin = (boolean) session.getAttribute("administrator");
-					
-				%>
+				
+			%>
 			<nav class="navbar navbar-light bg-light">
 		  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
 		  		<span class="navbar-brand mb-0 h1"><%=session.getAttribute("user")%></span>
@@ -49,14 +50,32 @@
 					<div class="row">
 						<% String categoryName = category.getName(); %>
 						<h1 class="display-1">Modelos <%=categoryName %></h1>
-						<form action="categories.jsp" method="get">
-							<button class="btn btn-secondary">Atras</button>
-						</form>
-						<a href="addElement">Añadir</a>
+						<div class="col-md-3">
+							<form action="categories.jsp" method="get">
+								<button class="btn btn-secondary">Atrás</button>
+							</form>
+						</div>
+						<%
+							if(admin){
+						%>
+								<div class="col">
+									<a href="addElement.jsp?key=<%=category.getId()%>" class="btn btn-primary">Añadir</a>
+								</div>
+						<%
+							}
+						%>
 					</div>
 					
 					<br>
 					<!-- list -->
+					<%
+					
+						List<Element> elementList = category.getElement();
+						
+						if(elementList != null){
+					%>
+					
+					
 					<div class="row">
 						<table class="table table-striped">
 							<thead class="thead-dark">
@@ -69,7 +88,6 @@
 								</tr>
 							</thead>
 						<%	
-							List<Element> elementList = category.getElement();
 							
 							for(Element e : elementList){
 						%>
@@ -83,20 +101,46 @@
 								<%
 									if(admin){
 								%>
-									<td>
-										<a href='#' class="btn btn-warning">Editar</a>
+									<td>						
+										 <a href='updateElement.jsp?keyCategory=<%=category.getId()%>&keyElement=<%=e.getId()%>' class="btn btn-warning">Editar</a> 
 									</td>
 									<td>
-										<a href='#' class="btn btn-danger">Borrar</a>
+										<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#<%=e.getName()%>" data-bs-whatever="@h">Borrar</button>
+	
+								        <!-- modal oculto -->
+								        <div class="modal fade" id="<%=e.getName()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								            <div class="modal-dialog">
+								                <div class="modal-content">
+								                    <div class="modal-header">
+								                        <h5 class="modal-title" id="exampleModalLabel"> ¿Seguro que deseas borrar el modelo <%=e.getName()%>?</h5>
+								                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								                    </div>
+								                    <div class="modal-footer">
+								                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+								                        <a href='deleteElement.jsp?key=<%=e.getId()%>' class="btn btn-danger">Sí, Borrar</a>
+								                    </div>
+								                </div>
+								            </div>
+								        </div>
+									
 									</td>
 								<%} %>
 						</tr>
 					<%
 						}
-					}
 					%>
 					</table>		
 				</div>
+				
+				<%
+				}else{
+					%>
+						<h1>Nada por aquí :(</h1>
+						<h3>¡Agrege algún modelo!</h3>
+					<%
+					
+				}
+				%>
 			</div>	
 			<!-- END MAIN -->
 			
@@ -107,7 +151,8 @@
 			  	</div>
 			</footer>
 	    <!-- END FOOTER -->
-			
+			<%} %>
+			<script src="js/app.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 	</body>
 </html>

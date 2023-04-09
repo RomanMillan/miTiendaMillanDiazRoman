@@ -63,3 +63,16 @@ form{
 }
 
 /* END CARD */
+
+/* INDEX RG */
+
+#holi{
+    margin-top: 7%;
+    background-color: DarkTurquoise;
+    border-radius: 2rem !important;
+    margin-bottom: 5%;
+    box-shadow: 2px 2px 15px gray;
+    margin-left: 20%; 
+}
+
+/* END INDEX RG */

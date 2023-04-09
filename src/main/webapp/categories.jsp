@@ -20,6 +20,8 @@
 		if(sesion.getAttribute("login") == null) {			
 				request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
+		
+		boolean isAdmin = (boolean) sesion.getAttribute("administrator");
 
 		%>
 		<nav class="navbar navbar-light bg-light">
@@ -39,7 +41,20 @@
 			</div>
 			
 			<div class="row">
-				<a href="allElements.jsp" class="btn btn-primary">Ver todos los modelos</a>
+				<div class="col">
+					<a href="allElements.jsp" class="btn btn-primary">Ver todos los modelos</a>
+				</div>
+				<%
+					
+					if(isAdmin){
+				
+				%>
+					<!-- añadir categoria -->
+					<div class="col">
+						<a href="addCategory.jsp" class="btn btn-primary">Añadir Marca</a>
+					</div>
+				
+				<%} %>
 			</div>
 			
 			<div class="row">
@@ -53,6 +68,36 @@
 					    <h5 class="card-title"><%=i.getName()%></h5>
 					    <p class="card-text"><%=i.getDescription()%></p>
 					    <a href='elements.jsp?key=<%=i.getId()%>' class="btn btn-primary">Modelos</a>
+					    
+					    <%
+					
+							if(isAdmin){
+						
+						%>
+							<!-- actualizar categoria -->
+							<a href='updateCategory.jsp?keyCategory=<%=i.getId()%>' class="btn btn-warning">Editar</a> 
+							
+							<!-- borrar  categoria-->
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#<%=i.getName()%>" data-bs-whatever="@h">Borrar</button>
+	
+					        <!-- modal oculto -->
+					        <div class="modal fade" id="<%=i.getName()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					            <div class="modal-dialog">
+					                <div class="modal-content">
+					                    <div class="modal-header">
+					                        <h5 class="modal-title" id="exampleModalLabel"> ¿Seguro que deseas borrar la marca <%=i.getName()%>?</h5>
+					                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					                    </div>
+					                    <div class="modal-footer">
+					                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					                        <a href='deleteCategory.jsp?keyCategory=<%=i.getId()%>' class="btn btn-danger">Sí, Borrar</a>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+						
+						<%} %>
+					    
 					  </div>
 					</div>
 				<%}%>			

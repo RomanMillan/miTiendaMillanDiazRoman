@@ -1,12 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@page import="com.jacaranda.controller.ElementControl"%>
 <%@page import="com.jacaranda.controller.CategoryControl"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ page import="com.jacaranda.model.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="ISO-8859-1">
 		<title>Insert title here</title>
 	</head>
 	<body>
@@ -16,20 +16,18 @@
 			int stock = Integer.parseInt(request.getParameter("stock"));
 			int price = Integer.parseInt(request.getParameter("price"));
 			int idCategory = Integer.parseInt(request.getParameter("idCategory"));
+			int idElement = Integer.parseInt(request.getParameter("idElement"));
 			
-			Category c = CategoryControl.getCategory(idCategory);
+			Category c = CategoryControl.getCategory(idCategory);			
+			Element e = ElementControl.getElement(idElement);
 			
-			/* Necesito comprobar que el nombre es unico */
-			boolean validElement = ElementControl.isValid(name);
-			
-			Element e = new Element();
-			if(c != null && validElement){				
+			if(c != null && e != null){				
 				e.setName(name);
 				e.setDescription(description);
 				e.setStock(stock);
 				e.setPrice(price);
 				e.setCat(c);
-				ElementControl.addElement(e);
+				ElementControl.updateElement(e);
 				String path = "elements.jsp?key=" + idCategory;
 				response.sendRedirect(path);
 			}else{
@@ -38,6 +36,5 @@
 			}
 		
 		%>
-		
 	</body>
 </html>

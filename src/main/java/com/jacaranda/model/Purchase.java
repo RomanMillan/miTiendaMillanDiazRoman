@@ -6,8 +6,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 @Entity(name="purchase")
+@IdClass(PurchaseId.class)
 public class Purchase {
 	
 	private int amount;

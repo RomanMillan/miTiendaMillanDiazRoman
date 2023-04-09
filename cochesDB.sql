@@ -39,15 +39,14 @@ CREATE TABLE miTiendaMillanDiazRoman.purchase(
 	id_element int(4),
 	id_user VARCHAR(32),
 	CONSTRAINT PK_purchase PRIMARY KEY (id_element, id_user, purchase_date),
-	CONSTRAINT FK_purchase_element FOREIGN KEY(id_element) REFERENCES elementDB(id),
-	CONSTRAINT FK_purchase_user FOREIGN KEY(id_user) REFERENCES userDB(user)
+	CONSTRAINT FK_purchase_element FOREIGN KEY(id_element) REFERENCES elementDB(id) ON DELETE CASCADE,
+	CONSTRAINT FK_purchase_user FOREIGN KEY(id_user) REFERENCES userDB(user) ON DELETE CASCADE
 );
 
-insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('admin', 'admin', 'admin', 'admin', true, '2023-10-25', true);
-
-insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('Eli', '1234', 'Elisa', 'Martinez', false, '2023-10-28', false);
-
-insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('Manu23', '156', 'Manuel', 'Saez', true, '2023-10-25', false);
+/*contraseña para admin : admin // los demás: 1234 */
+insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('admin', '3e3e6b0e5c1c68644fc5ce3cf060211d', 'admin', 'admin', true, '2023-10-25', true);
+insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('Eli', '45337ab528ab456381fd0fe311633a6b', 'Elisa', 'Martinez', false, '2023-10-28', false);
+insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('Manu23', '45337ab528ab456381fd0fe311633a6b', 'Manuel', 'Saez', true, '2023-10-25', false);
 
 insert into miTiendaMillanDiazRoman.category (id, name, description) values (1, 'Subaru', 'penatibus et magnis dis parturient montes');
 insert into miTiendaMillanDiazRoman.category (id, name, description) values (2, 'Mazda', 'massa id lobortis convallis tortor risus');
