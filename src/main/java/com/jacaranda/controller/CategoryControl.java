@@ -23,6 +23,19 @@ public class CategoryControl {
 		
 	}
 	
+// saco la categoria del nombre que se le pasa
+	public static Category getCategory(String nameCategory) {
+			Query<Category> query = ConnectionDAO.getSession().createQuery("SELECT c FROM com.jacaranda.model.Category c WHERE c.name =: nameCategory");
+			query.setParameter("nameCategory", nameCategory);
+			Category category = null;
+			try {				
+				category = query.getSingleResult();
+			} catch (Exception e) {
+				
+			}
+			return category;
+	}
+	
 //	Comprueba si el nombre de la categoria ya esta registrado
 	public static boolean isValid(String nameCategory) {
 		boolean valid = true;

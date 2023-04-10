@@ -2,7 +2,7 @@
 <%@page import="com.jacaranda.model.Element"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-       <%@ page import="java.util.List" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -42,6 +42,15 @@
 							<button class="btn btn-secondary">Atrás</button>
 						</form>
 					</div>
+					
+					<%
+						if(admin){
+					%>
+						<div class="col">
+							<a href="addAllElement.jsp" class="btn btn-primary">Añadir</a>
+						</div>
+					<%} %>
+					
 				</div>
 				
 				<br>
@@ -73,7 +82,7 @@
 								if(admin){
 							%>
 								<td>
-									<a href='#' class="btn btn-warning">Editar</a>
+									<a href='updateAllElement.jsp?keyElement<%=e.getId()%>' class="btn btn-warning">Editar</a>
 								</td>
 								<td>
 									<a href='#' class="btn btn-danger">Borrar</a>

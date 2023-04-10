@@ -88,6 +88,10 @@
 					                        <h5 class="modal-title" id="exampleModalLabel"> ¿Seguro que deseas borrar la marca <%=i.getName()%>?</h5>
 					                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					                    </div>
+					                    <div>
+					                        <p>Nombre: <%=i.getName()%></p>
+					                        <p>Descripción: <%=i.getDescription()%></p>
+					                    </div>
 					                    <div class="modal-footer">
 					                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 					                        <a href='deleteCategory.jsp?keyCategory=<%=i.getId()%>' class="btn btn-danger">Sí, Borrar</a>

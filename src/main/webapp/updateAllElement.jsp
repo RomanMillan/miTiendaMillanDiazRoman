@@ -1,24 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.jacaranda.controller.*" %>
-<%@ page import="com.jacaranda.model.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-		<link rel="stylesheet" href="css/style.css">
-		
 	</head>
 	<body>
+	
+	<!-- 
+									TENGO QUE HACER ESTO TODAVIA 
+									
+									
+									
+									
+									
+									 -->
+		
+		
 		
 		
 		<!-- HEADER -->
 			<%
 			if(session.getAttribute("login") == null || 
 					request.getParameter("keyElement") == null || request.getParameter("keyElement").isBlank() || 
-					request.getParameter("keyCategory") == null || request.getParameter("keyCategory").isBlank() || 
 					!(boolean) session.getAttribute("administrator")){
 				response.sendRedirect("error.jsp");
 			}else{
@@ -26,8 +31,6 @@
 				int idElement = Integer.parseInt(request.getParameter("keyElement"));
 				Element e = ElementControl.getElement(idElement);
 				
-				int idCategory = Integer.parseInt(request.getParameter("keyCategory"));
-				Category c = CategoryControl.getCategory(idCategory);
 				
 				if(c == null){
 					request.getRequestDispatcher("/categories.jsp").forward(request, response);
@@ -102,5 +105,6 @@
     <!-- END FOOTER -->
 			
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	
 	</body>
 </html>

@@ -44,7 +44,7 @@ CREATE TABLE miTiendaMillanDiazRoman.purchase(
 );
 
 /*contraseña para admin : admin // los demás: 1234 */
-insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('admin', '3e3e6b0e5c1c68644fc5ce3cf060211d', 'admin', 'admin', true, '2023-10-25', true);
+insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('admin', '3e3e6b0e5c1c68644fc5ce3cf060211d' 3e3e6b0e5c1c68644fc5ce3cf060211d, 'admin', 'admin', true, '2023-10-25', true);
 insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('Eli', '45337ab528ab456381fd0fe311633a6b', 'Elisa', 'Martinez', false, '2023-10-28', false);
 insert into miTiendaMillanDiazRoman.userDB (user, password, name, surname, gender, birthday, administrator) values ('Manu23', '45337ab528ab456381fd0fe311633a6b', 'Manuel', 'Saez', true, '2023-10-25', false);
 

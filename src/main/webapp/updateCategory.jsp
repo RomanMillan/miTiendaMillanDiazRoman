@@ -61,11 +61,11 @@
 							<form action="updateCategoryData.jsp" method="post">	
 								<div class="form-group">
 									<label>Nombre</label>
-									<input class="form-control" type="text" name="name" required>
+									<input class="form-control" type="text" name="name" value="<%=c.getName()%>" required>
 								</div>
 								<div class="form-group">
 									<label>Descripción</label>
-									<input class="form-control" type="text" name="description" required>
+									<input class="form-control" type="text" name="description" value="<%=c.getDescription()%>" required>
 								</div>
 																
 								<input type="text" name="idCategory" hidden="true" value="<%=c.getId()%>">
