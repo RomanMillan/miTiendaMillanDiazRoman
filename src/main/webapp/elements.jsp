@@ -50,16 +50,14 @@
 					<div class="row">
 						<% String categoryName = category.getName(); %>
 						<h1 class="display-1">Modelos <%=categoryName %></h1>
-						<div class="col-md-3">
-							<form action="categories.jsp" method="get">
-								<button class="btn btn-secondary">Atrás</button>
-							</form>
+						<div class="col-sm-10">
+							<a href="categories.jsp" class="btn btn-secondary">Atrás</a>
 						</div>
 						<%
 							if(admin){
 						%>
 								<div class="col">
-									<a href="addElement.jsp?key=<%=category.getId()%>" class="btn btn-primary">Añadir</a>
+									<a href="addElement.jsp?key=<%=category.getId()%>" class="btn btn-dark">Añadir</a>
 								</div>
 						<%
 							}

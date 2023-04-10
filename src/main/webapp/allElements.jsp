@@ -37,17 +37,15 @@
 				<!-- second header -->
 				<div class="row">
 					<h1 class="display-1"> Todos Los Modelos</h1>
-					<div class="col-md-3">
-						<form action="categories.jsp" method="get">
-							<button class="btn btn-secondary">Atrás</button>
-						</form>
+					<div class="col-sm-11">
+						<a href="categories.jsp" class="btn btn-secondary">Atrás</a>
 					</div>
 					
 					<%
 						if(admin){
 					%>
 						<div class="col">
-							<a href="addAllElement.jsp" class="btn btn-primary">Añadir</a>
+							<a href="addAllElement.jsp" class="btn btn-dark">Añadir</a>
 						</div>
 					<%} %>
 					
@@ -78,20 +76,46 @@
 							<td><%=e.getDescription()%></td>
 							<td><%=e.getPrice()%></td>
 							<td><%=e.getStock()%></td>
+							<td>
+								<a href='#' class="btn btn-success">Lo Quiero</a>
+							</td>
 							<%
 								if(admin){
 							%>
 								<td>
-									<a href='updateAllElement.jsp?keyElement<%=e.getId()%>' class="btn btn-warning">Editar</a>
+									<a href='updateAllElement.jsp?keyElement=<%=e.getId()%>' class="btn btn-warning">Editar</a>
 								</td>
-								<td>
-									<a href='#' class="btn btn-danger">Borrar</a>
+								<td>						
+									
+									<!-- borrar  categoria-->
+									<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#<%=e.getName()%>" data-bs-whatever="@h">Borrar</button>
+			
+							        <!-- modal oculto -->
+							        <div class="modal fade" id="<%=e.getName()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							            <div class="modal-dialog">
+							                <div class="modal-content">
+							                    <div class="modal-header">
+							                        <h5 class="modal-title" id="exampleModalLabel"> ¿Seguro que deseas borrar la marca <%=e.getName()%>?</h5>
+							                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							                    </div>
+							                    <div>
+							                        <p>Nombre: <%=e.getName()%></p>
+							                        <p>Descripción: <%=e.getDescription()%></p>
+							                        <p>Stock: <%=e.getStock()%></p>
+							                        <p>Precio: <%=e.getPrice()%></p>
+							                    </div>
+							                    <div class="modal-footer">
+							                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+							                        <a href='deleteAllElement.jsp?keyElement=<%=e.getId()%>' class="btn btn-danger">Sí, Borrar</a>
+							                    </div>
+							                </div>
+							            </div>
+							        </div>
+									
 								</td>
 							<%} %>
 					</tr>
-					<%
-						}
-					%>
+					<%}%>
 					</table>		
 				</div>
 			</div>	

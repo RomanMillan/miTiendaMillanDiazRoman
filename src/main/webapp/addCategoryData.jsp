@@ -23,7 +23,7 @@
 				CategoryControl.addCategory(c);
 				response.sendRedirect("categories.jsp");
 			}else{
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("errorAddCategory.jsp");
 			}
 			
 		%>

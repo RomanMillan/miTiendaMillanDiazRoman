@@ -41,7 +41,7 @@
 			</div>
 			
 			<div class="row">
-				<div class="col">
+				<div class="col-sm-10">
 					<a href="allElements.jsp" class="btn btn-primary">Ver todos los modelos</a>
 				</div>
 				<%
@@ -51,7 +51,7 @@
 				%>
 					<!-- añadir categoria -->
 					<div class="col">
-						<a href="addCategory.jsp" class="btn btn-primary">Añadir Marca</a>
+						<a href="addCategory.jsp" class="btn btn-dark">Añadir Marca</a>
 					</div>
 				
 				<%} %>

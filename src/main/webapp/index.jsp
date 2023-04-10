@@ -53,6 +53,9 @@
 					      <label for="validationServer02">contraseña</label>
 					      <input type="password" name="password" class="form-control" id="validationCustom01" placeholder="*******" required>
 						  
+						  <label for="validationServer02">Repetir contraseña</label>
+					      <input type="password" name="passwordRep" class="form-control" id="validationCustom01" placeholder="*******" required>
+						  
 						  <label for="validationServer02">Nombre real</label>
 					      <input type="text" name="realName" class="form-control" id="validationCustom01" placeholder="Manuel" required>
 						  
@@ -68,11 +71,9 @@
 							<br>
 						  <label for="validationServer02">Fecha nacimiento</label>
 					      <input type="date" name=birthday class="form-control" id="validationCustom01" required>
-	
-	
 					  </div>
 					  <br>
-					  <button class="btn btn-primary" type="submit">Entrar</button>
+					  <button class="btn btn-primary" type="submit">Registrarse</button>
 					</form>
 				</div>
 				

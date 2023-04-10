@@ -14,31 +14,37 @@
 			/* obtenemos los datos del formulario */
 			String username = request.getParameter("username");
 			String password = DigestUtils.md2Hex(request.getParameter("password"));
-			String realName = request.getParameter("realName");
-			String surname = request.getParameter("surname");
-			String gender = request.getParameter("gender");
-			boolean genderB = false;
-			if(gender.equals("Masculino")){
-				genderB = true;
-			}
-			String birthday = request.getParameter("birthday");
-			
-			/* creamos el objeto usurio */
-			User u = new User();
-			u.setUser(username);
-			u.setPassword(password);
-			u.setName(realName);
-			u.setSurname(surname);
-			u.setGender(genderB);
-			u.setBirthday(birthday);
-			
-			
-			/* agregamos el usuario a la base de datos */
-			Boolean added = UserControl.addUser(u);
-			if(added){
-				response.sendRedirect("index.jsp");
+			String passwordRep = DigestUtils.md2Hex(request.getParameter("passwordRep"));
+			if(!password.equals(passwordRep)){
+				response.sendRedirect("errorPassword.jsp");
 			}else{
-				response.sendRedirect("error.jsp");
+				
+				String realName = request.getParameter("realName");
+				String surname = request.getParameter("surname");
+				String gender = request.getParameter("gender");
+				boolean genderB = false;
+				if(gender.equals("Masculino")){
+					genderB = true;
+				}
+				String birthday = request.getParameter("birthday");
+				
+				/* creamos el objeto usurio */
+				User u = new User();
+				u.setUser(username);
+				u.setPassword(password);
+				u.setName(realName);
+				u.setSurname(surname);
+				u.setGender(genderB);
+				u.setBirthday(birthday);
+				
+				
+				/* agregamos el usuario a la base de datos */
+				Boolean added = UserControl.addUser(u);
+				if(added){
+					response.sendRedirect("addedUser.jsp");
+				}else{
+					response.sendRedirect("errorAddUser.jsp");
+				}
 			}
 		%>
 	</body>

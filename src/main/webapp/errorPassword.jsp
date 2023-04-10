@@ -4,11 +4,11 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Error agregar modelo</title>
+		<title>Insert title here</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
-		<body>
+	<body>
 		<!-- HEADER -->
 		<nav class="navbar navbar-light bg-light">
 	  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
@@ -16,23 +16,15 @@
 		<!-- END HEADER -->
 		
 		<!-- MAIN -->		
-		<%
-			String id = request.getParameter("key");
-		%>
 		
 		<div class="container">
 			<div class="row">
 				<h1 class="display-1">Ohh, ha ocurrido un error</h1>
-				<h3>El modelo que está intentando insertar no es válido</h3>
+				<h3>Lo sentimos, pero la contraseña no coincide</h3>
 				
-				<%
-				if(id!=null){
-				%>
-					<a href="addElement.jsp?key=<%=id%>" class="btn btn-secondary">Atrás</a>
-				<%}else{ %>
-					<a href="addAllElement.jsp" class="btn btn-secondary">Atrás</a>
-				<%} %>
-				
+				<form action="index.jsp" method="get">
+					<button class="btn btn-secondary">Atrás</button>
+				</form>
 			</div>
 		</div>
 				

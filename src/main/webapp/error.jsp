@@ -23,7 +23,7 @@
 				<h3>Lo sentimos, pero el nombre de usuario o contraseña son incorrectas</h3>
 				
 				<form action="index.jsp" method="get">
-					<button class="btn btn-secondary">Atras</button>
+					<button class="btn btn-secondary">Atrás</button>
 				</form>
 			</div>
 		</div>

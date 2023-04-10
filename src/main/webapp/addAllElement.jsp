@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
@@ -19,8 +19,6 @@
 						!(boolean) session.getAttribute("administrator")){
 					response.sendRedirect("error.jsp");
 				}else{
-									
-					List<Category> listCategory = CategoryControl.getCategory();
 					
 				%>
 					<nav class="navbar navbar-light bg-light">
@@ -72,6 +70,7 @@
 							</form>
 						</div>			
 						
+					</div>
 					</div>
 		
 		<%}%>

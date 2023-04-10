@@ -1,24 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ page import="com.jacaranda.controller.*" %>
+   <%@ page import="com.jacaranda.model.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 	</head>
 	<body>
-	
-	<!-- 
-									TENGO QUE HACER ESTO TODAVIA 
-									
-									
-									
-									
-									
-									 -->
-		
-		
-		
 		
 		<!-- HEADER -->
 			<%
@@ -30,12 +22,8 @@
 				
 				int idElement = Integer.parseInt(request.getParameter("keyElement"));
 				Element e = ElementControl.getElement(idElement);
-				
-				
-				if(c == null){
-					request.getRequestDispatcher("/categories.jsp").forward(request, response);
-				}
-					
+				Category c = e.getCat();
+
 				%>
 					<nav class="navbar navbar-light bg-light">
 				  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
@@ -52,11 +40,11 @@
 						<div class="row">
 							<div class="row">
 								<div class="col-md-3">
-									<a href="elements.jsp?key=<%=c.getId()%>" class="btn btn-secondary">Atrás</a>
+									<a href="allElements.jsp" class="btn btn-secondary">Atrás</a>
 								</div>
 							</div>
 							<div class="row">
-								<h1 class="display-1"><%=c.getName()%> , <%=e.getName()%></h1>
+								<h1 class="display-1"><%=c.getName()%>, <%=e.getName()%></h1>
 							</div>
 						</div>
 					
@@ -64,9 +52,9 @@
 						
 						<!-- form -->
 						<div class="row">
-							<form action="updateElementData.jsp" method="post">	
+							<form action="updateAllElementData.jsp" method="post">		
 								<div class="form-group">
-									<label>Nombre</label>
+									<label>Nombre del Modelo</label>
 									<input class="form-control" type="text" name="name" value="<%=e.getName()%>" required>
 								</div>
 								<div class="form-group">

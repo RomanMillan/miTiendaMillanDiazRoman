@@ -32,7 +32,7 @@
 			ElementControl.addElement(e);
 			response.sendRedirect("allElements.jsp");
 		}else{
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("errorAddElement.jsp");
 		}
 		
 		
