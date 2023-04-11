@@ -77,7 +77,7 @@
 							<td><%=e.getPrice()%></td>
 							<td><%=e.getStock()%></td>
 							<td>
-								<a href='#' class="btn btn-success">Lo Quiero</a>
+								<a href='addPurchase.jsp?key=<%=e.getId()%>&amount=5' class="btn btn-success">Lo Quiero</a>
 							</td>
 							<%
 								if(admin){

@@ -3,6 +3,7 @@
 <%@page import="com.jacaranda.model.User" %>
 <%@page import="com.jacaranda.controller.UserControl" %>
 <%@ page import="org.apache.commons.codec.digest.DigestUtils" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,8 @@
 				sesion.setAttribute("login",true);
 				sesion.setAttribute("user",username);
 				sesion.setAttribute("administrator", false);
+				HashMap<Integer, Integer> purchase = new HashMap<Integer, Integer>();
+				sesion.setAttribute("purchase",purchase);
 				
 				if(user.isAdministrator()) {
 					sesion.setAttribute("administrator", true);

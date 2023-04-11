@@ -10,17 +10,20 @@
 	</head>
 	<body>
 		<%
+			String nameCategory = request.getParameter("nameCategory");
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
 			int stock = Integer.parseInt(request.getParameter("stock"));
 			int price = Integer.parseInt(request.getParameter("price"));
-			int idCategory = Integer.parseInt(request.getParameter("idCategory"));
+			//int idCategory = Integer.parseInt(request.getParameter("idCategory"));
 			int idElement = Integer.parseInt(request.getParameter("idElement"));
 			
-			Category c = CategoryControl.getCategory(idCategory);			
+			Category c = CategoryControl.getCategory(nameCategory);			
 			Element e = ElementControl.getElement(idElement);
 			
+			
 			if(c != null && e != null){				
+				e.setCat(c);
 				e.setName(name);
 				e.setDescription(description);
 				e.setStock(stock);
@@ -29,7 +32,7 @@
 				ElementControl.updateElement(e);
 				response.sendRedirect("allElements.jsp");
 			}else{
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("errorAddElement.jsp");
 			}
 		
 		%>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
    <%@ page import="com.jacaranda.controller.*" %>
    <%@ page import="com.jacaranda.model.*" %>
+   <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,6 +24,7 @@
 				int idElement = Integer.parseInt(request.getParameter("keyElement"));
 				Element e = ElementControl.getElement(idElement);
 				Category c = e.getCat();
+				List<Category> categoryList = CategoryControl.getCategory();
 
 				%>
 					<nav class="navbar navbar-light bg-light">
@@ -53,6 +55,26 @@
 						<!-- form -->
 						<div class="row">
 							<form action="updateAllElementData.jsp" method="post">		
+								
+								<div class="form-group">
+									<label>Nombre de la Marca</label>
+									<br>
+									<select name="nameCategory" class="form-select">
+									<%
+										for(Category cL : categoryList){
+											if(cL.getId() == c.getId()){
+													
+									%>
+										<option selected="selected" value="<%=cL.getName()%>"><%=cL.getName()%></option>
+									<%}else{%>
+										<option><%=cL.getName()%></option>
+									
+									<%}
+									}
+									%>
+									</select>
+								</div>
+								
 								<div class="form-group">
 									<label>Nombre del Modelo</label>
 									<input class="form-control" type="text" name="name" value="<%=e.getName()%>" required>
@@ -71,7 +93,7 @@
 								</div>
 								
 								
-								<input type="text" name="idCategory" hidden="true" value="<%=c.getId()%>">
+								<%-- <input type="text" name="idCategory" hidden="true" value="<%=c.getId()%>"> --%>
 								<input type="text" name="idElement" hidden="true" value="<%=e.getId()%>">
 								<br>
 								<button class="btn btn-primary" type="submit">Actualizar</button>

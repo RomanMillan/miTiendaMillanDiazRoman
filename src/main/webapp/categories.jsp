@@ -4,6 +4,7 @@
  <%@page import="com.jacaranda.model.Category"%>
  <%@page import="com.jacaranda.model.User"%>
  <%@page import="java.util.List"%>
+ <%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,6 +28,10 @@
 		<nav class="navbar navbar-light bg-light">
 	  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
 	  		<span class="navbar-brand mb-0 h1">Hola, <%=session.getAttribute("user") + "  👋"%></span>
+	  		<%	  		
+	  			HashMap purchase = (HashMap) sesion.getAttribute("purchase");
+	  		%>
+	  		<a href='#' class="btn btn-info a-closeSession"><%=purchase.size()%></a>
 	  		<a href='index.jsp' class="btn btn-danger a-closeSession">Cerrar Sesión</a>
 	  		
 		</nav>
