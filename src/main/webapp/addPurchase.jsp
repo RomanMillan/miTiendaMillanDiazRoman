@@ -14,7 +14,7 @@
 		
 		HashMap p = (HashMap)  session.getAttribute("purchase");
 		p.put(key, amount);
-		response.sendRedirect("categories.jsp");
+		response.sendRedirect("allElements.jsp");
 	%>
 </body>
 </html>

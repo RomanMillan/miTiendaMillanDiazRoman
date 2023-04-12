@@ -26,14 +26,20 @@
 
 		%>
 		<nav class="navbar navbar-light bg-light">
-	  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
-	  		<span class="navbar-brand mb-0 h1">Hola, <%=session.getAttribute("user") + "  👋"%></span>
+	  		<div class="col-md-3">
+		  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
+	  		</div>
+	  		<div class="col-md-6 welcome">
+		  		<span class="navbar-brand mb-0 h1">Hola, <%=session.getAttribute("user") + "  👋"%></span>
+	  		</div>
 	  		<%	  		
-	  			HashMap purchase = (HashMap) sesion.getAttribute("purchase");
+	  			HashMap purchase = (HashMap) session.getAttribute("purchase");
 	  		%>
-	  		<a href='#' class="btn btn-info a-closeSession"><%=purchase.size()%></a>
-	  		<a href='index.jsp' class="btn btn-danger a-closeSession">Cerrar Sesión</a>
-	  		
+	  		<div class="col-md-3 pruClose">
+		  		<img alt="purchaseImg" src="img/purchase.png">
+		  		<a href='purchase.jsp' class="btn btn-info a-closeSession"><%=purchase.size()%></a>
+		  		<a href='index.jsp' class="btn btn-danger a-closeSession">Cerrar Sesión</a>
+	  		</div>
 		</nav>
 			
 	<!-- END HEADER -->

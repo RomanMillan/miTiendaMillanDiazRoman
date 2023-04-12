@@ -1,12 +1,13 @@
 <%@page import="com.jacaranda.controller.ElementControl"%>
 <%@page import="com.jacaranda.model.Element"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+ <%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+		<meta charset="UFT-8">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
 		<title>Todos los modelos</title>
@@ -14,21 +15,32 @@
 	<body>
 		<!-- HEADER -->
 			<%
-				/* compruebo que está logeado */
-				boolean isValid = (boolean) session.getAttribute("login");
-				if(!isValid){
-					request.getRequestDispatcher("/error.jsp").forward(request, response);
+				/* compruebo que estÃ¡ logeado */
+				HttpSession sesion = request.getSession();
+				if(sesion.getAttribute("login") == null) {			
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
 				}
 
 				/* miro si es admin  */
 				boolean admin = (boolean) session.getAttribute("administrator");
 				
 			%>
-		<nav class="navbar navbar-light bg-light">
-	  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
-	  		<span class="navbar-brand mb-0 h1"><%=session.getAttribute("user")%></span>
-	  		<a href='index.jsp' class="btn btn-danger a-closeSession">Cerrar Sesión</a>
-		</nav>
+			<nav class="navbar navbar-light bg-light">
+		  		<div class="col-md-3">
+			  		<span class="navbar-brand mb-0 h1">Todo Coches</span>
+		  		</div>
+		  		<div class="col-md-6 welcome">
+			  		<span class="navbar-brand mb-0 h1"><%=sesion.getAttribute("user")%></span>
+		  		</div>
+		  		<%	  		
+		  			HashMap purchase = (HashMap) sesion.getAttribute("purchase");
+		  		%>
+		  		<div class="col-md-3 pruClose">
+			  		<img alt="purchaseImg" src="img/purchase.png">
+			  		<a href='purchase.jsp' class="btn btn-info a-closeSession"><%=purchase.size()%></a>
+			  		<a href='index.jsp' class="btn btn-danger a-closeSession">Cerrar SesiÃ³n</a>
+		  		</div>
+			</nav>
 	<!-- END HEADER -->
 	
 		<!-- MAIN -->
@@ -38,14 +50,14 @@
 				<div class="row">
 					<h1 class="display-1"> Todos Los Modelos</h1>
 					<div class="col-sm-11">
-						<a href="categories.jsp" class="btn btn-secondary">Atrás</a>
+						<a href="categories.jsp" class="btn btn-secondary">AtrÃ¡s</a>
 					</div>
 					
 					<%
 						if(admin){
 					%>
 						<div class="col">
-							<a href="addAllElement.jsp" class="btn btn-dark">Añadir</a>
+							<a href="addAllElement.jsp" class="btn btn-dark">AÃ±adir</a>
 						</div>
 					<%} %>
 					
@@ -59,9 +71,10 @@
 							<tr>
 								<th scope="col">Modelo</th>
 								<th scope="col">Nombre</th>
-							    <th scope="col">Descripción</th>
+							    <th scope="col">DescripciÃ³n</th>
 							    <th scope="col">Precio</th>
 							    <th scope="col">Disponibles</th>
+							    <th scope="col">Cantidad</th>
 							</tr>
 						</thead>
 					<%	
@@ -76,9 +89,16 @@
 							<td><%=e.getDescription()%></td>
 							<td><%=e.getPrice()%></td>
 							<td><%=e.getStock()%></td>
-							<td>
-								<a href='addPurchase.jsp?key=<%=e.getId()%>&amount=5' class="btn btn-success">Lo Quiero</a>
-							</td>
+							<form action="addPurchase.jsp" method="post">
+								<td>
+									<input type="number" name="amount" min="1" max="<%=e.getStock()%>" required>
+									<input type="text" name="key" value="<%=e.getId()%>"  hidden="true">
+								</td>
+								<td>
+									<button type="submit" class="btn btn-success">Lo Quiero</button>
+									<%-- <a href='addPurchase.jsp?key=<%=e.getId()%>' class="btn btn-success">Lo Quiero</a> --%>
+								</td>
+							</form>
 							<%
 								if(admin){
 							%>
@@ -95,18 +115,18 @@
 							            <div class="modal-dialog">
 							                <div class="modal-content">
 							                    <div class="modal-header">
-							                        <h5 class="modal-title" id="exampleModalLabel"> ¿Seguro que deseas borrar la marca <%=e.getName()%>?</h5>
+							                        <h5 class="modal-title" id="exampleModalLabel"> Â¿Seguro que deseas borrar el modelo <%=e.getName()%>?</h5>
 							                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							                    </div>
 							                    <div>
 							                        <p>Nombre: <%=e.getName()%></p>
-							                        <p>Descripción: <%=e.getDescription()%></p>
+							                        <p>DescripciÃ³n: <%=e.getDescription()%></p>
 							                        <p>Stock: <%=e.getStock()%></p>
 							                        <p>Precio: <%=e.getPrice()%></p>
 							                    </div>
 							                    <div class="modal-footer">
 							                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-							                        <a href='deleteAllElement.jsp?keyElement=<%=e.getId()%>' class="btn btn-danger">Sí, Borrar</a>
+							                        <a href='deleteAllElement.jsp?keyElement=<%=e.getId()%>' class="btn btn-danger">SÃ­, Borrar</a>
 							                    </div>
 							                </div>
 							            </div>
@@ -124,7 +144,7 @@
 		<!-- FOOTER -->
 		     <footer class="bg-light text-center text-lg-start">
 			 	<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			    	© 2023 Copyright: TodoCoches.com
+			    	Â© 2023 Copyright: TodoCoches.com
 			  	</div>
 			</footer>
 	    <!-- END FOOTER -->
