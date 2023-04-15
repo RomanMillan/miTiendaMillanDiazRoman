@@ -10,7 +10,7 @@
 	<body>
 		<%
 			int key = Integer.parseInt(request.getParameter("key"));
-			HashMap p = (HashMap)  session.getAttribute("purchase");
+			HashMap p = (HashMap) session.getAttribute("purchase");
 			p.remove(key);
 			response.sendRedirect("purchase.jsp");
 		%>

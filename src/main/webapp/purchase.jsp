@@ -62,6 +62,7 @@
 					</tr>
 				</thead>
 				<%	
+					int cont = 0;
 					int totalPrice = 0;
 					for(Object clave:p.keySet()) {
 						int aux = Integer.parseInt(clave.toString()); 
@@ -74,10 +75,11 @@
 						<td><%=p.get(aux)%></td>
 						<td>
 							<!-- borrar  categoria-->
-							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#<%=e.getName()%>" data-bs-whatever="@h">Borrar</button>
-	
+							<%cont++; %>
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#<%=cont%>">Borrar</button>
+
 					        <!-- modal oculto -->
-					        <div class="modal fade" id="<%=e.getName()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					        <div class="modal fade" id="<%=cont%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					            <div class="modal-dialog">
 					                <div class="modal-content">
 					                    <div class="modal-header">
@@ -92,7 +94,7 @@
 					                    </div>
 					                    <div class="modal-footer">
 					                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-					                        <a href='deletePurchase.jsp?key=<%=p.get(aux)%>' class="btn btn-danger">Sí, Borrar</a>
+					                        <a href='deletePurchase.jsp?key=<%=aux%>' class="btn btn-danger">Sí, Borrar</a>
 					                    </div>
 					                </div>
 					            </div>

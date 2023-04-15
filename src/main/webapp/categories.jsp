@@ -52,8 +52,11 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-sm-10">
+				<div class="col-sm-2">
 					<a href="allElements.jsp" class="btn btn-primary">Ver todos los modelos</a>
+				</div>
+				<div class="col">
+					<a href="listPurchase.jsp" class="btn btn-info">Ver mis compras</a>
 				</div>
 				<%
 					
