@@ -47,7 +47,17 @@
 							<form action="addAllElementData.jsp" method="post">	
 								<div class="form-group">
 									<label>Nombre Marca</label>
-									<input class="form-control" type="text" name="nameCategory" required>
+									<br>
+									<select name="nameCategory" class="form-select">
+									<%
+										List<Category> categoryList = CategoryControl.getCategory();
+										for(Category cL : categoryList){													
+									%>
+										<option><%=cL.getName()%></option>
+									
+									<%}%>
+									</select>
+										<!-- <input class="form-control" type="text" name="nameCategory" required> -->
 								</div>
 								<div class="form-group">
 									<label>Nombre Modelo</label>

@@ -55,9 +55,17 @@
 					<div class="col-sm-11">
 						<a href="categories.jsp" class="btn btn-secondary">Atrás</a>
 					</div>
+					<div class="col-sm-11">
 					
-		
-					
+								<a href="orderOld.jsp" class="btn btn-secondary">Más antiguo</a>
+								<a href="orderNew.jsp" class="btn btn-secondary">Más reciente</a>
+					<!-- 	<select>
+							<option value="new">
+							</option>
+							<option value="old">
+							</option>
+						</select> -->
+					</div>
 				</div>
 				
 				<br>
@@ -75,7 +83,7 @@
 						</thead>
 					<%	
 						String user = (String)sesion.getAttribute("user");
-						List<Purchase> listPurchase = PurchaseControl.getPruchase(UserControl.getUser(user));
+						 List<Purchase> listPurchase = PurchaseControl.getPruchase(UserControl.getUser(user)); 
 						
 						for(Purchase pl: listPurchase){
 						

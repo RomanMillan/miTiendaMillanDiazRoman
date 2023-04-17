@@ -1,5 +1,6 @@
 package com.jacaranda.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.query.Query;
@@ -7,6 +8,7 @@ import org.hibernate.query.Query;
 import com.jacaranda.BD.ConnectionDAO;
 import com.jacaranda.model.Purchase;
 import com.jacaranda.model.User;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
 public class PurchaseControl {
 
@@ -40,6 +42,34 @@ public class PurchaseControl {
 		query.setParameter("user", user);
 		try {
 			 purchase = query.getResultList();
+		}catch (Exception e) {
+		}
+		return purchase;
+		
+	}
+	
+//	obtengo la lista de comptra de un usuario especifico
+	public static List<Purchase> getOrderAsc(User user){
+		List<Purchase> purchase = null;
+		Query<Purchase> query = ConnectionDAO.getSession().createQuery("SELECT p FROM com.jacaranda.model.Purchase p WHERE p.userObj =: user ORDER BY p.purchase_date ASC");
+		query.setParameter("user", user);
+		try {
+			 purchase = query.getResultList();
+		}catch (Exception e) {
+		}
+		return purchase;
+		
+	}
+	
+	
+//	obtengo la lista de comptra de un usuario especifico
+	public static List<Purchase> getOrderDes(User user){
+		List<Purchase> purchase = null;
+		Query<Purchase> query = ConnectionDAO.getSession().createQuery("SELECT p FROM com.jacaranda.model.Purchase p WHERE p.userObj =: user ORDER BY p.purchase_date DESC");
+		query.setParameter("user", user);
+		try {
+			 purchase = query.getResultList();
+			 purchase.stream().sorted(Collections.reverseOrder());
 		}catch (Exception e) {
 		}
 		return purchase;
