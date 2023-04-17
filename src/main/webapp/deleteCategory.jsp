@@ -10,14 +10,16 @@
 	</head>
 	<body>
 		<%
+			
+		if(session.getAttribute("login") == null || 
+		!(boolean) session.getAttribute("administrator")){
+			response.sendRedirect("error.jsp");
+		}else{
 			int keyCategory  = Integer.parseInt(request.getParameter("keyCategory"));
-			
 			Category c = CategoryControl.getCategory(keyCategory);
-			
 			CategoryControl.deleteCategory(c);
-			
 			response.sendRedirect("categories.jsp");
-		
+		}
 		%>
 	</body>
 </html>

@@ -48,7 +48,8 @@ public class PurchaseControl {
 		
 	}
 	
-//	obtengo la lista de comptra de un usuario especifico
+//	obtengo la lista de compra de un usuario ordenada de manera ascendente
+
 	public static List<Purchase> getOrderAsc(User user){
 		List<Purchase> purchase = null;
 		Query<Purchase> query = ConnectionDAO.getSession().createQuery("SELECT p FROM com.jacaranda.model.Purchase p WHERE p.userObj =: user ORDER BY p.purchase_date ASC");
@@ -62,7 +63,7 @@ public class PurchaseControl {
 	}
 	
 	
-//	obtengo la lista de comptra de un usuario especifico
+//	obtengo la lista de compra de un usuario ordenada de manera descendente
 	public static List<Purchase> getOrderDes(User user){
 		List<Purchase> purchase = null;
 		Query<Purchase> query = ConnectionDAO.getSession().createQuery("SELECT p FROM com.jacaranda.model.Purchase p WHERE p.userObj =: user ORDER BY p.purchase_date DESC");

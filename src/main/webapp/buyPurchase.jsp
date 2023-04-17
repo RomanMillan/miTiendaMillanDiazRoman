@@ -13,7 +13,9 @@
 	</head>
 	<body>	
 		<%
-			
+		if(session.getAttribute("login") == null){
+			response.sendRedirect("error.jsp");
+		}else{
 			HashMap p = (HashMap) session.getAttribute("purchase");
 			if(p != null && !p.isEmpty()){
 				String userName = (String) session.getAttribute("user");
@@ -63,7 +65,7 @@
 			}else{
 				response.sendRedirect("purchase.jsp");
 			}
-			
+		}
 		%>
 	
 	</body>

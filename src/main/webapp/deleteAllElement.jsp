@@ -10,12 +10,15 @@
 	</head>
 	<body>
 		<%
-		
+		if(session.getAttribute("login") == null || 
+		!(boolean) session.getAttribute("administrator")){
+			response.sendRedirect("error.jsp");
+		}else{
 			int keyElement = Integer.parseInt(request.getParameter("keyElement"));
 			Element e = ElementControl.getElement(keyElement);
 			ElementControl.deleteElement(e);
 			response.sendRedirect("allElements.jsp");
-		
+		}
 		%>
 	</body>
 </html>

@@ -9,10 +9,14 @@
 	</head>
 	<body>
 		<%
+		if(session.getAttribute("login") == null){
+			response.sendRedirect("error.jsp");
+		}else{
 			int key = Integer.parseInt(request.getParameter("key"));
 			HashMap p = (HashMap) session.getAttribute("purchase");
 			p.remove(key);
 			response.sendRedirect("purchase.jsp");
+		}
 		%>
 	</body>
 </html>

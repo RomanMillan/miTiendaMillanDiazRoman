@@ -11,6 +11,10 @@
 		</head>
 	<body>
 		<%
+		if(session.getAttribute("login") == null || 
+		!(boolean) session.getAttribute("administrator")){
+			response.sendRedirect("error.jsp");
+		}else{
 			int idElement = Integer.parseInt(request.getParameter("key"));
 			Element e = ElementControl.getElement(idElement);
 			
@@ -20,7 +24,7 @@
 			ElementControl.deleteElement(e);
 			String path = "elements.jsp?key=" + categoryId;
 			response.sendRedirect(path);
-			
+		}
 		%>
 	</body>
 </html>

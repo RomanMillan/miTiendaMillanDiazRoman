@@ -1,7 +1,5 @@
 @charset "ISO-8859-1";
 
-
-
 /* HEADER */
 
 .navbar-brand {
@@ -9,10 +7,7 @@
 	font-size: 1.5rem !important;	
 }
 
-/* .a-closeSession{
-	margin-right: 2rem !important
-}
- */
+
 .welcome{
 	text-align: center;
 }
@@ -83,3 +78,10 @@ form{
 }
 
 /* END INDEX RG */
+
+
+.orderList{
+	border-style: none !important;
+	font-weight: bold;
+}
+

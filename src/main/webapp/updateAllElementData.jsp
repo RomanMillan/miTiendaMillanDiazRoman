@@ -10,6 +10,10 @@
 	</head>
 	<body>
 		<%
+		if(session.getAttribute("login") == null || 
+		!(boolean) session.getAttribute("administrator")){
+			response.sendRedirect("error.jsp");
+		}else{
 			String nameCategory = request.getParameter("nameCategory");
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
@@ -34,7 +38,7 @@
 			}else{
 				response.sendRedirect("errorAddElement.jsp");
 			}
-		
+		}
 		%>
 	</body>
 </html>

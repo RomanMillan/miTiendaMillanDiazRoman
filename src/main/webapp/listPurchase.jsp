@@ -52,19 +52,8 @@
 				<!-- second header -->
 				<div class="row">
 					<h1 class="display-1">Todas Mis Compras</h1>
-					<div class="col-sm-11">
+					<div class="col-sm-10">
 						<a href="categories.jsp" class="btn btn-secondary">Atrás</a>
-					</div>
-					<div class="col-sm-11">
-					
-								<a href="orderOld.jsp" class="btn btn-secondary">Más antiguo</a>
-								<a href="orderNew.jsp" class="btn btn-secondary">Más reciente</a>
-					<!-- 	<select>
-							<option value="new">
-							</option>
-							<option value="old">
-							</option>
-						</select> -->
 					</div>
 				</div>
 				
@@ -78,7 +67,13 @@
 								<th scope="col">Modelo</th>
 								<th scope="col">Precio (€)</th>
 							    <th scope="col">Cantidad</th>
-							    <th scope="col">Fecha</th>
+							    <th scope="col">
+							    	<select class="orderList">
+							    		<option>Fecha</option>
+							    		<option value="orderNew.jsp">Reciente</option>
+							    		<option value="orderOld.jsp">Antiguas</option>
+							    	</select>
+							    </th>
 							</tr>
 						</thead>
 					<%	
@@ -111,7 +106,7 @@
 	    <!-- END FOOTER -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 	
-		
+		<script src="js/app.js"></script>
 		
 	</body>
 </html>
